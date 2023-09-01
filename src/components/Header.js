@@ -32,11 +32,11 @@ const Header = () => {
     };
     const handleChange = (e, val) => {
         const movie = movies.find((m) => m.title === val);
-        console.log(movie);
-        if (isUserLoggedIn) {
+        if (movie && isUserLoggedIn) { // Add a check for the movie object
             navigate(`/booking/${movie._id}`);
         }
     };
+
     return (
         <AppBar position="sticky" sx={{ bgcolor: "#2b2d42" }}>
             <Toolbar>

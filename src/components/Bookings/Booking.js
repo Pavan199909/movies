@@ -27,6 +27,9 @@ const Booking = () => {
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
     };
+    function bookTicket() {
+        alert("Booking successfull!..you can check your ticket at profile")
+    }
     return (
         <div>
             {movie && (
@@ -90,7 +93,7 @@ const Booking = () => {
                                         value={inputs.date}
                                         onChange={handleChange}
                                     />
-                                    <Button type="submit" sx={{ mt: 3 }}>
+                                    <Button onClick={bookTicket} type="submit" sx={{ mt: 3 }}>
                                         Book Now
                                     </Button>
                                 </Box>

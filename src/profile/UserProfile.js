@@ -7,6 +7,7 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 const UserProfile = () => {
     const [bookings, setBookings] = useState();
     const [user, setUser] = useState();
+
     useEffect(() => {
         getUserBooking()
             .then((res) => setBookings(res.bookings))
@@ -15,8 +16,15 @@ const UserProfile = () => {
         getUserDetails().then((res) => setUser(res.user)).catch((err) => console.log(err))
     }, []);
     const handleDelete = (id) => {
-        deleteBooking(id).then((res) => console.log(res)).catch((err) => console.log(err))
-    }
+        deleteBooking(id)
+            .then((res) => {
+                // Remove the deleted booking from the state
+                setBookings(prevBookings => prevBookings.filter(booking => booking._id !== id));
+                console.log(res);
+            })
+            .catch((err) => console.log(err));
+    };
+
     return (
         <Box width={"100%"} display={"flex"}>
 
